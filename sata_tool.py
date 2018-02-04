@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\Administrator\Desktop\python_pro\sata_tool.ui'
+# Form implementation generated from reading ui file 'E:\git\sata_test_tool\sata_tool.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
@@ -29,12 +29,21 @@ class Ui_main_window(object):
         self.groupBox_3 = QtGui.QGroupBox(main_window)
         self.groupBox_3.setGeometry(QtCore.QRect(10, 300, 381, 251))
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
-        self.pushButton_4 = QtGui.QPushButton(self.groupBox_3)
-        self.pushButton_4.setGeometry(QtCore.QRect(290, 220, 75, 23))
-        self.pushButton_4.setObjectName(_fromUtf8("pushButton_4"))
+        self.serial_log = QtGui.QPushButton(self.groupBox_3)
+        self.serial_log.setGeometry(QtCore.QRect(290, 220, 75, 23))
+        self.serial_log.setObjectName(_fromUtf8("serial_log"))
         self.listWidget_2 = QtGui.QListWidget(self.groupBox_3)
         self.listWidget_2.setGeometry(QtCore.QRect(10, 20, 361, 192))
         self.listWidget_2.setObjectName(_fromUtf8("listWidget_2"))
+        self.serial_set = QtGui.QPushButton(self.groupBox_3)
+        self.serial_set.setGeometry(QtCore.QRect(10, 220, 75, 23))
+        self.serial_set.setObjectName(_fromUtf8("serial_set"))
+        self.serial_open = QtGui.QPushButton(self.groupBox_3)
+        self.serial_open.setGeometry(QtCore.QRect(100, 220, 75, 23))
+        self.serial_open.setObjectName(_fromUtf8("serial_open"))
+        self.serial_close = QtGui.QPushButton(self.groupBox_3)
+        self.serial_close.setGeometry(QtCore.QRect(200, 220, 75, 23))
+        self.serial_close.setObjectName(_fromUtf8("serial_close"))
         self.groupBox = QtGui.QGroupBox(main_window)
         self.groupBox.setGeometry(QtCore.QRect(420, 310, 351, 251))
         self.groupBox.setObjectName(_fromUtf8("groupBox"))
@@ -77,7 +86,10 @@ class Ui_main_window(object):
     def retranslateUi(self, main_window):
         main_window.setWindowTitle(_translate("main_window", "Form", None))
         self.groupBox_3.setTitle(_translate("main_window", "日志输出", None))
-        self.pushButton_4.setText(_translate("main_window", "保存日志", None))
+        self.serial_log.setText(_translate("main_window", "保存日志", None))
+        self.serial_set.setText(_translate("main_window", "串口设置", None))
+        self.serial_open.setText(_translate("main_window", "打开串口", None))
+        self.serial_close.setText(_translate("main_window", "关闭串口", None))
         self.groupBox.setTitle(_translate("main_window", "参数配置", None))
         self.label.setText(_translate("main_window", "指令地址", None))
         self.label_3.setText(_translate("main_window", "数据内容", None))

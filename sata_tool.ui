@@ -25,7 +25,7 @@
    <property name="title">
     <string>日志输出</string>
    </property>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="serial_log">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -46,6 +46,45 @@
       <width>361</width>
       <height>192</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="serial_set">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>串口设置</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="serial_open">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>220</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>打开串口</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="serial_close">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>220</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>关闭串口</string>
     </property>
    </widget>
   </widget>
