@@ -1,6 +1,7 @@
 import sys
 import os
 import socket
+import serial
 from  PyQt4         import QtCore , QtGui
 
 
@@ -17,14 +18,17 @@ class MainWindow(QtGui.QWidget ,  Ui_main_window):
         self.setupUi(self)
         self.init_device_list()
         self.connect(self.serial_set ,  QtCore.SIGNAL('clicked()'),   self.ser_port_click)
-
+        self.serial_handler = serial_main_windows(callback = self.serial_recv)
 
 
 
 # serial set
     def ser_port_click(self):
-        self.serial_handler = serial_main_windows()
+        self.serial_handler.show()
+        self.connect(self.serial_handler , QtCore.SIGNAL("transfer_father") , self , QtCore.SLOT("serial_recv"))
 
+    def serial_recv(self , serial_content):
+        print(serial_content)
 
     def init_device_list(self):
         from disk_info import device_info

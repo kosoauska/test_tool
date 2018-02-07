@@ -15,7 +15,7 @@ class device_info():
                     disklist = [disk.Caption ,
                                 disk.VolumeName ,
                                 "" ,
-                                round((int(partition.size) / 1024 / 1024 / 1024) , 1) ,
+                                round((int(disk.size) / 1024 / 1024 / 1024) , 1) ,
                                 disk.FileSystem ,
                                 physical_disk.Caption ,
                                 ""]
