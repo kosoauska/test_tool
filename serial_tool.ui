@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>522</width>
-    <height>372</height>
+    <width>959</width>
+    <height>370</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,7 +48,7 @@
      <string>端口</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="ser_buad">
+   <widget class="QComboBox" name="ser_baud">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -130,7 +130,7 @@
      <string>校验位</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="ser_pari">
+   <widget class="QComboBox" name="ser_pair">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -144,7 +144,7 @@
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>760</x>
      <y>20</y>
      <width>181</width>
      <height>91</height>
@@ -196,7 +196,7 @@
   <widget class="QGroupBox" name="groupBox_3">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>760</x>
      <y>130</y>
      <width>181</width>
      <height>101</height>
@@ -252,49 +252,49 @@
     </property>
    </widget>
   </widget>
-  <widget class="QGroupBox" name="groupBox_4">
+  <widget class="QGroupBox" name="groupBox_5">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>240</y>
-     <width>181</width>
-     <height>111</height>
+     <x>290</x>
+     <y>20</y>
+     <width>461</width>
+     <height>331</height>
     </rect>
    </property>
    <property name="title">
-    <string/>
+    <string>默认配置</string>
    </property>
-   <widget class="QPushButton" name="ser_cancel">
+   <widget class="QPushButton" name="ser_select">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>70</y>
+      <x>370</x>
+      <y>300</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>取消</string>
+     <string>选择配置</string>
     </property>
    </widget>
    <widget class="QPushButton" name="ser_load">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>30</y>
+      <x>10</x>
+      <y>300</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>读取设置</string>
+     <string>加载配置</string>
     </property>
    </widget>
    <widget class="QPushButton" name="ser_save">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>30</y>
+      <x>110</x>
+      <y>300</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -303,19 +303,42 @@
      <string>保存设置</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="ser_finish">
+   <widget class="QTableWidget" name="serial_config_list">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>70</y>
-      <width>75</width>
-      <height>23</height>
+      <x>10</x>
+      <y>20</y>
+      <width>441</width>
+      <height>271</height>
      </rect>
     </property>
-    <property name="text">
-     <string>完成</string>
-    </property>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="ser_finish">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>320</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>完成</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ser_cancel">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>320</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
   </widget>
  </widget>
  <resources/>

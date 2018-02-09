@@ -16,6 +16,7 @@ class MainWindow(QtGui.QWidget ,  Ui_main_window):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
+        self.setWindowTitle("sata test tool")
         self.init_device_list()
         self.connect(self.serial_set ,  QtCore.SIGNAL('clicked()'),   self.ser_port_click)
         self.serial_handler = serial_main_windows(callback = self.serial_recv)
