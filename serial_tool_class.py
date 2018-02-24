@@ -9,15 +9,17 @@ from  PyQt4   import QtCore , QtGui
 from serial_tool import  Ui_serial
 from config      import  config_class
 from local     import    _fromUtf8
-
 baud = ["4800" , "9600" , "14400" , "19200" , "38400"  , "115200"]
 data = ["5" , "6" , "7" , "8"]
 stop = ["1" , "1.5" , "2"]
 pair = ["None" , "Odd" , "Even" , "Mark" , "Space"]
-colr = ["WHITE" , "BLACK" , "RED" , "GREEN" , "ORANGE"]
+color = ["WHITE" , "BLACK" , "RED" , "GREEN" , "ORANGE"]
 pair_value = [serial.PARITY_NONE , serial.PARITY_ODD , serial.PARITY_EVEN , serial.PARITY_MARK  , serial.PARITY_SPACE]
+#serial read trigger
+
 
 class serial_main_windows(QtGui.QWidget ,  Ui_serial):
+    serial_read_single = QtCore.pyqtSignal(str, name="serial_read_single")
     def __init__(self, callback=None , parent=None):
         super(serial_main_windows , self).__init__(parent)
         self.setupUi(self)
@@ -33,15 +35,12 @@ class serial_main_windows(QtGui.QWidget ,  Ui_serial):
         self.serial_config_list.setShowGrid(False)
         self.serial_config_list.resizeRowsToContents()
         self.serial_config_list.setSelectionBehavior(QtGui.QTableWidget.SelectRows)
-#TODO  load config info
-
 # SIGNAL
         self.connect(self.ser_save , QtCore.SIGNAL('clicked()'), self.ser_save_click)
         self.connect(self.ser_load , QtCore.SIGNAL('clicked()'), self.ser_load_click)
         self.connect(self.ser_finish , QtCore.SIGNAL('clicked()'), self.ser_finish_click)
         self.connect(self.ser_cancel , QtCore.SIGNAL('clicked()'), self.ser_cancel_click)
         self.connect(self.ser_select , QtCore.SIGNAL('clicked()'), self.ser_select_click)
-
 
     def serial_init(self):
         for i in range(0 , 15):
@@ -50,7 +49,10 @@ class serial_main_windows(QtGui.QWidget ,  Ui_serial):
         self.ser_bits.addItems(data)
         self.ser_stop.addItems(stop)
         self.ser_pair.addItems(pair)
+        self.ser_font.addItems(color)
+        self.ser_back.addItems(color)
         self.ser_bits.setCurrentIndex(3)
+        self.ser_font.setCurrentIndex(1)
         for i in range(0 , 15):
             try:
                 serial.Serial("COM" + str(i))
@@ -92,7 +94,6 @@ class serial_main_windows(QtGui.QWidget ,  Ui_serial):
             self.serial_set["bc"] = self.serial_config_list.item(select_row , 6).text()
         except Exception as e:
             print("ser select exception: %s " % e)
-
         try:
             temp = self.ser_port.findText(self.serial_set["com"])
             self.ser_port.setCurrentIndex(temp)
@@ -104,7 +105,10 @@ class serial_main_windows(QtGui.QWidget ,  Ui_serial):
             self.ser_stop.setCurrentIndex(temp)
             temp = self.ser_pair.findText(self.serial_set["pair"])
             self.ser_pair.setCurrentIndex(temp)
-#TODO color
+            temp = self.ser_font.findText(self.serial_set["fc"])
+            self.ser_font.setCurrentIndex(temp)
+            temp = self.ser_back.findText(self.serial_set["bc"])
+            self.ser_back.setCurrentIndex(temp)
         except Exception as e:
             print("set index exception: %s " % e)
 
@@ -131,7 +135,7 @@ class serial_main_windows(QtGui.QWidget ,  Ui_serial):
 
     def ser_finish_click(self):
         self.serial_set["com"] = "COM" + str(self.ser_port.currentIndex())
-        self.serial_set["baud"] = baud[self.ser_buad.currentIndex()]
+        self.serial_set["baud"] = baud[self.ser_baud.currentIndex()]
         self.serial_set["data"] = data[self.ser_bits.currentIndex()]
         self.serial_set["stop"] = stop[self.ser_stop.currentIndex()]
         self.serial_set["pair"] = pair_value[self.ser_pair.currentIndex()]
@@ -146,10 +150,54 @@ class serial_main_windows(QtGui.QWidget ,  Ui_serial):
         else:
             if  self.callback != None:
                 self.callback(self.serial_set)
-            self.close()
+            #self.close()
+        self.serial_open()
 
     def ser_cancel_click(self):
         pass
+# open serail
+
+    def serial_open(self):
+        self.serial_set["com"] = "COM10"
+        self.serial_set["baud"] = "38400"
+        print("serial thread")
+        self.serial_handler = serial.Serial(port = self.serial_set["com"] , baudrate=int(self.serial_set["baud"]) ,
+                                        bytesize = int(self.serial_set["data"]) , parity = self.serial_set["pair"] ,
+                                        timeout = 1 )
+        self.serial_thread = serial_thread(self.serial_handler)
+        self.serial_thread.start()
+        self.serial_thread.serial_read_trigger.connect(self.serial_read)
+
+
+    def serial_close(self):
+        self.serial_handler.close()
+
+    def serial_read(self , data):
+        self.serial_read_trigger.emit(data)
+
+
+    def serial_write(self):
+        pass
+
+
+    def __del__(self):
+        pass
+
+
+class serial_thread(QtCore.QThread):
+    serial_read_trigger = QtCore.pyqtSignal(str, name="serial_read_trigger")
+    def __init__(self, serial_handler=None):
+        super(serial_thread , self).__init__()
+        self.serial_handler = serial_handler
+
+    def run(self):
+        while 1:
+            s = self.serial_handler.readline()
+            if len(s) > 0:
+                s = s.decode("utf8", "ignore")
+                self.serial_read_trigger.emit(s)
+
+
 
 
 if __name__ == '__main__':

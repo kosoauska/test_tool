@@ -218,7 +218,7 @@
      <string>背景色</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="set_back">
+   <widget class="QComboBox" name="ser_back">
     <property name="geometry">
      <rect>
       <x>71</x>

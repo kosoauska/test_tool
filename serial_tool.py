@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'E:\git\test_tool\serial_tool.ui'
 #
-# Created: Fri Feb  9 17:24:51 2018
+# Created: Sun Feb 11 15:44:41 2018
 #      by: PyQt4 UI code generator 4.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -78,9 +78,9 @@ class Ui_serial(object):
         self.label_6 = QtGui.QLabel(self.groupBox_3)
         self.label_6.setGeometry(QtCore.QRect(10, 61, 36, 16))
         self.label_6.setObjectName(_fromUtf8("label_6"))
-        self.set_back = QtGui.QComboBox(self.groupBox_3)
-        self.set_back.setGeometry(QtCore.QRect(71, 61, 81, 20))
-        self.set_back.setObjectName(_fromUtf8("set_back"))
+        self.ser_back = QtGui.QComboBox(self.groupBox_3)
+        self.ser_back.setGeometry(QtCore.QRect(71, 61, 81, 20))
+        self.ser_back.setObjectName(_fromUtf8("ser_back"))
         self.label_5 = QtGui.QLabel(self.groupBox_3)
         self.label_5.setGeometry(QtCore.QRect(11, 21, 48, 16))
         self.label_5.setObjectName(_fromUtf8("label_5"))

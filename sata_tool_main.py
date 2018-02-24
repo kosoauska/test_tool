@@ -20,6 +20,7 @@ class MainWindow(QtGui.QWidget ,  Ui_main_window):
         self.init_device_list()
         self.connect(self.serial_set ,  QtCore.SIGNAL('clicked()'),   self.ser_port_click)
         self.serial_handler = serial_main_windows(callback = self.serial_recv)
+        self.serial_handler.serial_read_single.connect(self.serial_recv)
 
 
 
@@ -29,7 +30,7 @@ class MainWindow(QtGui.QWidget ,  Ui_main_window):
         self.connect(self.serial_handler , QtCore.SIGNAL("transfer_father") , self , QtCore.SLOT("serial_recv"))
 
     def serial_recv(self , serial_content):
-        print(serial_content)
+        print(serial_content , end = "")
 
     def init_device_list(self):
         from disk_info import device_info
@@ -42,7 +43,6 @@ class MainWindow(QtGui.QWidget ,  Ui_main_window):
         self.device_list.resizeRowsToContents()
         self.device_list.setSelectionBehavior(QtGui.QTableWidget.SelectRows)
         self.device_list.setRowCount(len(disk_handler))
-        print(disk_handler)
         for i in range(len(disk_handler)):
             self.device_list.setItem(i, 0 , QtGui.QTableWidgetItem(_fromUtf8(disk_handler[i][0])))
             self.device_list.setItem(i, 1 , QtGui.QTableWidgetItem(_fromUtf8(disk_handler[i][1])))
